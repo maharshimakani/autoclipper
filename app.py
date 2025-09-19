@@ -74,8 +74,27 @@ SAMPLE_VIDEO = "https://www.youtube.com/watch?v=iH_6av3Yj0g"  # reliable caption
 # ----------------------------- Utils -----------------------------
 
 def ensure_nltk():
-    nltk.download("punkt", quiet=True)
-    nltk.download("stopwords", quiet=True)
+    import nltk
+    # punkt models
+    try:
+        nltk.data.find("tokenizers/punkt")
+    except LookupError:
+        nltk.download("punkt", quiet=True)
+
+    # NLTK 3.8+ requires punkt_tab tables as well
+    try:
+        nltk.data.find("tokenizers/punkt_tab")
+    except LookupError:
+        try:
+            nltk.download("punkt_tab", quiet=True)
+        except Exception:
+            pass  # older NLTK won't have this package; ignore
+
+    # stopwords
+    try:
+        nltk.data.find("corpora/stopwords")
+    except LookupError:
+        nltk.download("stopwords", quiet=True)
 
 def extract_video_id(url_or_id: str) -> Optional[str]:
     s = (url_or_id or "").strip()
