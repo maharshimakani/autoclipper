@@ -1,0 +1,13 @@
+﻿.vercel
+.venv/
+__pycache__/
+shorts_output/
+*.mp4
+*.wav
+*.webm
+*.zip
+*.pth
+*.pt
+*.bin
+*.onnx
+*.safetensors

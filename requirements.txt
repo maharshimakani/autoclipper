@@ -1,0 +1,11 @@
+streamlit
+numpy
+pandas
+librosa
+opencv-python-headless
+nltk
+transformers
+yt-dlp
+youtube-transcript-api
+deep-translator
+requests
